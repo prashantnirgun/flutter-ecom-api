@@ -28,12 +28,12 @@ class ProductDataModel {
 }
 
 class ProductModel {
-  String? id;
+  dynamic id;
   String? name;
   String? price;
   String? image;
-  String? categoryId;
-  String? status;
+  dynamic categoryId;
+  dynamic status;
   String? createdAt;
   String? updatedAt;
 
@@ -53,7 +53,7 @@ class ProductModel {
     name = json['name'];
     price = json['price'];
     image = json['image'];
-    categoryId = json['category_id']?.toString();
+    categoryId = json['category_id'];
     status = json['status'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];

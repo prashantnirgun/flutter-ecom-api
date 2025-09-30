@@ -32,7 +32,7 @@ class _ProductListState extends State<ProductList> {
     );
     if (oldWidget.categoryId != widget.categoryId) {
       context.read<ProductBloc>().add(
-        FetchProductEvent(categoryId: widget.categoryId.toString()),
+        FetchProductEvent(categoryId: widget.categoryId),
       );
     }
   }
