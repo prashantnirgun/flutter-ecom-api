@@ -2,11 +2,13 @@
 
 class AppConstants {
   static const String APPNAME = 'ShopSmart';
-  static const String VERSION = '1.0.0';
+  static const String VERSION = '1.1.0';
   static const String API_KEY = '4f92a1e3d70c4a088bf7d6ae5c29c85f';
+  static const String TOKENKEY = 'token';
+  static const String USERDATAKEY = 'user_data';
 }
 
-/*
+/*tokan
  "name":"Prashant",
     "mobile_number":423764254,
     "email":"prashant@gmail.com",

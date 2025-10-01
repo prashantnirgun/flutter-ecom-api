@@ -19,7 +19,6 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   ) async {
     emit(ProductLoadingState());
     try {
-      print('inside bloc ${event.categoryId} ${event.categoryId.runtimeType}');
       dynamic res = await productRepo.fetchProudcts(
         categoryId: event.categoryId,
       );
@@ -29,7 +28,6 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         emit(ProductLoadedState(mProductList: mProducts));
       }
     } catch (e) {
-      print('exception caught $e');
       emit(ProductErrorState(errorMessage: e.toString()));
     }
   }

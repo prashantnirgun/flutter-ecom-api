@@ -73,8 +73,9 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
             IconButton(
               onPressed: () {
-                selectedIndex = 4;
-                setState(() {});
+                // selectedIndex = 4;
+                // setState(() {});
+                Navigator.pushNamed(context, AppRoutes.SETTINGPAGE);
               },
               icon: Icon(
                 Icons.account_circle_outlined,

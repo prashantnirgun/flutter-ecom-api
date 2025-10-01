@@ -358,7 +358,7 @@ class _SignupPageState extends State<SignupPage> {
                             );
                           }
 
-                          if (state is AuthSuccessState) {
+                          if (state is SignupSuccessState) {
                             isLoading = false;
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

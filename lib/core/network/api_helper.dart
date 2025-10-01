@@ -45,7 +45,6 @@ class ApiHelper {
       mHeaderParams["Content-Type"] = "application/json";
     }
     try {
-      print('params ===> $mBodyParams');
       var response = await http.post(
         Uri.parse(url),
         body: mBodyParams != null ? jsonEncode(mBodyParams) : null,

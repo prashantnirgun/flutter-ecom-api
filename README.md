@@ -71,7 +71,15 @@ assets/
 1. [x] Product Page : Display product details and can add to cart.
 1. [x] Cart Page : Display product added to cart and can increment, decrement qty.
 1. [x] Order Page : Display Previously completed orders.
-1. [ ] Settings : User Profile, logout.
+1. [x] Settings : User Profile, logout.
 1. [ ] Discount Coupon :
 
 ## Images
+
+|                                               |                                              |                                               |
+| --------------------------------------------- | -------------------------------------------- | --------------------------------------------- |
+| Splash                                        | Login                                        | Signup                                        |
+| <img src="./assets/splash.jpg" height="400"/> | <img src="./assets/login.jpg" height="400"/> | <img src="./assets/signup.jpg" height="400"/> |
+| Home                                          | Cart Item                                    | Orders                                        |
+| All Products                                  | Settings                                     | Privacy                                       |
+| Terms & Condition                             | Support                                      |                                               |

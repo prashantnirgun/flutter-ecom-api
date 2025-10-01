@@ -7,10 +7,8 @@ class ProductRepo {
   Future<dynamic> fetchProudcts({required String categoryId}) async {
     try {
       if (categoryId == "0") {
-        print('inside if = 0');
         return await apiHelper.postApi(url: AppUrls.fetchProductUrl);
       } else {
-        print('inside else = $categoryId ${categoryId.runtimeType}');
         return await apiHelper.postApi(
           url: AppUrls.fetchProductUrl,
           mBodyParams: {"category_id": categoryId},

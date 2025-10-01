@@ -80,6 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                       keyboardType: TextInputType.emailAddress,
                       style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
+                        hintText: "Email",
                         //labelText: 'Enter Email',
                         //labelStyle: TextStyle(color: Colors.black),
                         filled: true,
@@ -123,6 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                       obscureText: _obsecurePassword,
                       style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
+                        hintText: 'Password',
                         //labelText: 'Password',
                         //labelStyle: const TextStyle(color: Colors.black),
                         filled: true,
@@ -194,7 +196,7 @@ class _LoginPageState extends State<LoginPage> {
                               );
                             }
 
-                            if (state is AuthSuccessState) {
+                            if (state is LoginSuccessState) {
                               isLoading = false;
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(

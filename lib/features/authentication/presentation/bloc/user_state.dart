@@ -6,7 +6,12 @@ class UserInitialState extends UserState {}
 
 class UserLoadingState extends UserState {}
 
-class AuthSuccessState extends UserState {}
+class LoginSuccessState extends UserState {
+  final UserModel user;
+  LoginSuccessState({required this.user});
+}
+
+class SignupSuccessState extends UserState {}
 
 class UserLoadedState extends UserState {
   List<UserModel> mUsersList;

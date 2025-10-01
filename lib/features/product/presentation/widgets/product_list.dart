@@ -18,7 +18,6 @@ class _ProductListState extends State<ProductList> {
   @override
   void initState() {
     super.initState();
-    print('caregoryId =====> ${widget.categoryId}');
     context.read<ProductBloc>().add(
       FetchProductEvent(categoryId: widget.categoryId),
     );
@@ -27,9 +26,6 @@ class _ProductListState extends State<ProductList> {
   @override
   void didUpdateWidget(covariant ProductList oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print(
-      'updated caregoryId =====> ${oldWidget.categoryId}  ${widget.categoryId} ${widget.categoryId.runtimeType}',
-    );
     if (oldWidget.categoryId != widget.categoryId) {
       context.read<ProductBloc>().add(
         FetchProductEvent(categoryId: widget.categoryId),
@@ -60,7 +56,6 @@ class _ProductListState extends State<ProductList> {
           }
 
           if (state is ProductLoadedState) {
-            print('product loaded state is build=====>');
             return state.mProductList.isNotEmpty
                 ? GridView.builder(
                     shrinkWrap: true,

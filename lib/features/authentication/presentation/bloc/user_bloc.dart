@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecom_api/core/constants/app_constant.dart';
+import 'package:flutter_ecom_api/features/authentication/data/models/user_model.dart';
 import 'package:flutter_ecom_api/features/authentication/domain/repositories/user_repo.dart';
 
 import 'package:flutter_ecom_api/features/authentication/presentation/bloc/user_event.dart';
@@ -12,6 +15,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc({required this.userRepository}) : super(UserInitialState()) {
     on<RegisteredUserEvent>(registeredUserEvent);
     on<LoginUserEvent>(loginUserEvent);
+    on<LogoutUserEvent>(logoutUserEvent);
   }
 
   FutureOr<void> registeredUserEvent(
@@ -27,7 +31,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         mobileNo: event.mobileNo,
       );
       if (res['status']) {
-        emit(AuthSuccessState());
+        emit(SignupSuccessState());
       } else {
         emit(UserFailureState(errorMessage: res['message']));
       }
@@ -48,20 +52,29 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       );
 
       if (res['status']) {
-        //fetch user List
-        // dynamic res = await userRepository.fetchUsers();
-        // if (res['status']) {
-        //   List<UserModel> mUserList = UserDataModel.fromJson(res).data;
-        // final user = mUserList.firstWhere(
-        //   (user) => user.email == event.email,
-        // );
-        //print('user is $user');
-        // }
-
         ///prefs
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString("token", res["tokan"]);
-        emit(AuthSuccessState());
+        prefs.setString(AppConstants.TOKENKEY, res["tokan"]);
+
+        //fetch user List
+        dynamic response = await userRepository.fetchUsers();
+        print('user list $response');
+        if (res['status']) {
+          List<UserModel> mUserList = UserDataModel.fromJson(response).data;
+          final currentUser = mUserList.firstWhere(
+            (user) => user.email == event.email,
+          );
+          print('user is $currentUser');
+
+          await prefs.setString(
+            AppConstants.USERDATAKEY,
+            jsonEncode(currentUser.toJson()),
+          );
+
+          emit(LoginSuccessState(user: currentUser));
+        } else {
+          print('inside else of current user');
+        }
       } else {
         emit(UserFailureState(errorMessage: res['message']));
       }
@@ -70,21 +83,17 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
   }
 
-  /*
-  FutureOr<void> fetchUserEvent(
-    FetchUserEvent event,
-    Emitter<UserState> emit,
-  ) async {
-    emit(UserLoadingState());
-    try {
-      dynamic res = userRepository.fetchUsers();
-      if (res['status']) {
-        List<UserModel> mUserList = UserDataModel.fromJson(res).data;
-        emit(UserLoadedState(mUsersList: mUserList));
-      }
-    } catch (e) {
-      emit(UserFailureState(errorMessage: e.toString()));
-    }
+  // Clear all authentication data (logout)
+  Future<void> clearAuthData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(AppConstants.TOKENKEY);
+    await prefs.remove(AppConstants.USERDATAKEY);
   }
-  */
+
+  FutureOr<void> logoutUserEvent(
+    LogoutUserEvent event,
+    Emitter<UserState> emit,
+  ) {
+    clearAuthData();
+  }
 }

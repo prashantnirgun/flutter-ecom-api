@@ -21,4 +21,6 @@ class LoginUserEvent extends UserEvent {
   LoginUserEvent({required this.email, required this.password});
 }
 
+class LogoutUserEvent extends UserEvent {}
+
 class FetchUserEvent extends UserEvent {}
