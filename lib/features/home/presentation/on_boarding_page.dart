@@ -37,6 +37,11 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           Navigator.pushReplacementNamed(context, AppRoutes.LOGINPAGE);
         },
         pages: getPages(),
+        controlsMargin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).padding.bottom + 16,
+          left: 6,
+          right: 6,
+        ),
       ),
     );
   }
@@ -44,7 +49,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   List<PageViewModel> getPages() {
     return [
       PageViewModel(
-        decoration: PageDecoration(imageFlex: 2),
+        decoration: PageDecoration(imageFlex: 1),
         image: Image.asset('assets/images/on_board/product.png'),
         titleWidget: Text(
           'Discover Amazing Products',
@@ -54,7 +59,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             "Explore thousands of products across categories — from fashion to electronics, all in one place. Find what you love effortlessly.",
       ),
       PageViewModel(
-        decoration: PageDecoration(imageFlex: 2),
+        decoration: PageDecoration(imageFlex: 1),
         image: Image.asset('assets/images/on_board/wallet.png'),
         titleWidget: Text(
           'Fast & Secure Checkout',
@@ -64,7 +69,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             "Enjoy quick, safe payments and doorstep delivery. Track your orders in real-time with just a tap.",
       ),
       PageViewModel(
-        decoration: PageDecoration(imageFlex: 2),
+        decoration: PageDecoration(imageFlex: 1),
         image: Image.asset('assets/images/on_board/deal.png'),
         titleWidget: Text(
           'Exclusive Deals & Discounts',

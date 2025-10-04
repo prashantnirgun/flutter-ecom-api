@@ -70,16 +70,18 @@ class DashboardState extends State<Dashboard> {
         data: Theme.of(
           context,
         ).copyWith(iconTheme: IconThemeData(color: Colors.black)),
-        child: CurvedNavigationBar(
-          color: Colors.orangeAccent,
-          backgroundColor: Colors.transparent,
-          buttonBackgroundColor: Colors.green,
-          height: 60,
-          index: index,
-          items: items,
-          onTap: (index) => setState(() {
-            this.index = index;
-          }),
+        child: SafeArea(
+          child: CurvedNavigationBar(
+            color: Colors.orangeAccent,
+            backgroundColor: Colors.transparent,
+            buttonBackgroundColor: Colors.green,
+            height: 60,
+            index: index,
+            items: items,
+            onTap: (index) => setState(() {
+              this.index = index;
+            }),
+          ),
         ),
       ),
     );

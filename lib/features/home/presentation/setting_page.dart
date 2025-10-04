@@ -120,7 +120,7 @@ class _SettingPageState extends State<SettingPage> {
       //   ],
       // ),
       body: ListView(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.only(bottom: 16, left: 10, right: 10, top: 0),
         children: [
           // Profile Section
           Card(
@@ -184,7 +184,10 @@ class _SettingPageState extends State<SettingPage> {
               children: [
                 SwitchListTile(
                   title: Text('Notifications'),
-                  subtitle: Text('Enable push notifications'),
+                  subtitle: Text(
+                    'Enable push notifications',
+                    style: TextStyle(fontSize: 13),
+                  ),
                   value: _notificationsEnabled,
                   onChanged: (bool value) {
                     setState(() {
@@ -209,7 +212,7 @@ class _SettingPageState extends State<SettingPage> {
             ),
           ),
 
-          SizedBox(height: 16),
+          SizedBox(height: 14),
 
           // Support Section
           Text(

@@ -42,11 +42,7 @@ class _ProductCardState extends State<ProductCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Center(
-                    child: Image.network(
-                      widget.imgPath,
-                      width: 120,
-                      height: 120,
-                    ),
+                    child: Image.network(widget.imgPath, width: 90, height: 90),
                   ),
                   Spacer(),
                   Text(
@@ -63,6 +59,7 @@ class _ProductCardState extends State<ProductCard> {
                           double.parse(widget.price),
                           decimalPlaces: 0,
                         ),
+                        style: TextStyle(fontSize: 12),
                       ),
                       Spacer(),
                       SizedBox(

@@ -366,8 +366,8 @@ class _CartPageState extends State<CartPage> {
           if (state is CartSuccessState) {
             final totalAmount = state.totalAmount;
             return Container(
-              padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
-              height: 300,
+              padding: EdgeInsets.only(left: 20, right: 20, bottom: 30),
+              height: 335,
               decoration: BoxDecoration(
                 color: Colors.white,
                 boxShadow: [
@@ -388,8 +388,8 @@ class _CartPageState extends State<CartPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 50,
-                        width: 350,
+                        height: 40,
+                        width: 320,
                         child: TextField(
                           controller: couponController,
                           keyboardType: TextInputType.text,
@@ -407,7 +407,7 @@ class _CartPageState extends State<CartPage> {
                                   'Apply',
                                   style: TextStyle(
                                     color: Colors.orange,
-                                    fontSize: 18,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
