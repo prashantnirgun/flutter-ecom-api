@@ -12,4 +12,7 @@ class CreateOrderEvent extends OrderEvent {
   });
 }
 
-class FetchOrderEvent extends OrderEvent {}
+class FetchOrderEvent extends OrderEvent {
+  int userId;
+  FetchOrderEvent({required this.userId});
+}

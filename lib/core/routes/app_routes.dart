@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecom_api/features/authentication/presentation/pages/login_page.dart';
 import 'package:flutter_ecom_api/features/authentication/presentation/pages/signup_page.dart';
 import 'package:flutter_ecom_api/features/cart/presentation/pages/cart_page.dart';
-import 'package:flutter_ecom_api/features/home/presentation/dashboard_page.dart';
+import 'package:flutter_ecom_api/features/home/presentation/dashboard.dart';
 import 'package:flutter_ecom_api/features/home/presentation/help_support_page.dart';
 import 'package:flutter_ecom_api/features/home/presentation/home_page.dart';
 import 'package:flutter_ecom_api/features/home/presentation/private_policy_page.dart';
@@ -31,7 +31,7 @@ class AppRoutes {
     SPLASHPAGE: (_) => SplashPage(),
     LOGINPAGE: (_) => LoginPage(),
     SIGNUPPAGE: (_) => SignupPage(),
-    DASHBOARDPAGE: (_) => DashboardPage(),
+    DASHBOARDPAGE: (_) => Dashboard(),
     HOMEPAGE: (_) => HomePage(),
     CARTPAGE: (_) => CartPage(),
     ORDERPAGE: (_) => OrderPage(),

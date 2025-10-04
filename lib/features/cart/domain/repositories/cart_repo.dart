@@ -41,6 +41,7 @@ class CartRepository {
 
   Future<dynamic> fetchCartItems() async {
     try {
+      //no body is required fetch from token
       return await apiHelper.getApi(url: AppUrls.fetchCartUrl);
     } catch (e) {
       rethrow;

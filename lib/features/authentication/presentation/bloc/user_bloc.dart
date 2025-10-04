@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   UserRepository userRepository;
   UserBloc({required this.userRepository}) : super(UserInitialState()) {
+    on<LoadUserFromPrefsEvent>(_onLoadUserFromPrefs);
     on<RegisteredUserEvent>(registeredUserEvent);
     on<LoginUserEvent>(loginUserEvent);
     on<LogoutUserEvent>(logoutUserEvent);
@@ -58,13 +59,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
         //fetch user List
         dynamic response = await userRepository.fetchUsers();
-        print('user list $response');
+
         if (res['status']) {
           List<UserModel> mUserList = UserDataModel.fromJson(response).data;
           final currentUser = mUserList.firstWhere(
             (user) => user.email == event.email,
           );
-          print('user is $currentUser');
 
           await prefs.setString(
             AppConstants.USERDATAKEY,
@@ -72,9 +72,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           );
 
           emit(LoginSuccessState(user: currentUser));
-        } else {
-          print('inside else of current user');
-        }
+        } else {}
       } else {
         emit(UserFailureState(errorMessage: res['message']));
       }
@@ -95,5 +93,22 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     Emitter<UserState> emit,
   ) {
     clearAuthData();
+    emit(UserInitialState());
+  }
+
+  FutureOr<void> _onLoadUserFromPrefs(
+    LoadUserFromPrefsEvent event,
+    Emitter<UserState> emit,
+  ) async {
+    final prefs = await SharedPreferences.getInstance();
+    final userString = prefs.getString(AppConstants.USERDATAKEY);
+
+    if (userString != null) {
+      final userMap = json.decode(userString);
+      UserModel user = UserModel.fromJson(userMap);
+      emit(LoginSuccessState(user: user));
+    } else {
+      emit(UserInitialState());
+    }
   }
 }

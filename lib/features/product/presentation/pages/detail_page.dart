@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecom_api/core/routes/app_routes.dart';
+import 'package:flutter_ecom_api/core/utils/dialogs.dart';
 import 'package:flutter_ecom_api/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:flutter_ecom_api/features/cart/presentation/bloc/cart_event.dart';
 import 'package:flutter_ecom_api/features/cart/presentation/bloc/cart_state.dart';
@@ -352,13 +354,34 @@ class _DetailPageState extends State<DetailPage> {
 
                       if (state is CartSuccessState) {
                         isLoading = false;
-                        Navigator.pop(context);
+
+                        AppDialogs.showSuccess(
+                          context,
+                          title: 'Product added successfully',
+                          desc: 'Redirecting to Dashboard...',
+                          onOk: () {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              AppRoutes.DASHBOARDPAGE,
+                            );
+                          },
+                          onDismiss: (type) {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              AppRoutes.DASHBOARDPAGE,
+                            );
+                          },
+                        );
+
+                        //Navigator.pop(context);
+                        /*
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text("Item added to cart Successfully"),
                             backgroundColor: Colors.green,
                           ),
                         );
+                        */
                       }
                     },
                     builder: (context, state) {

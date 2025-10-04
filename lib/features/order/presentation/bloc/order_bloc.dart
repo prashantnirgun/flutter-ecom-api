@@ -18,7 +18,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           status: event.status,
         );
 
-        if (res["status"] == "true") {
+        if (res["status"]) {
           emit(OrderSuccessState());
         } else {
           emit(OrderFailureState(errorMessage: res["message"]));
@@ -32,7 +32,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       emit(OrderLoadingState());
 
       try {
-        dynamic res = await orderRepository.fetchOrders();
+        dynamic res = await orderRepository.fetchOrders(userId: event.userId);
 
         if (res["status"] == "true" || res["status"]) {
           OrderResponse response = OrderResponse.fromJson(res);

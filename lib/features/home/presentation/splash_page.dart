@@ -1,9 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecom_api/core/constants/app_constant.dart';
 import 'package:flutter_ecom_api/core/network/api_helper.dart';
 import 'package:flutter_ecom_api/core/routes/app_routes.dart';
+import 'package:flutter_ecom_api/features/authentication/presentation/bloc/user_bloc.dart';
+import 'package:flutter_ecom_api/features/authentication/presentation/bloc/user_event.dart';
 import 'package:flutter_ecom_api/features/authentication/presentation/pages/login_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -17,6 +20,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
+    context.read<UserBloc>().add(LoadUserFromPrefsEvent());
     Timer(Duration(seconds: 2), () async {
       String nextPage = AppRoutes.LOGINPAGE;
       String token = await ApiHelper.getToken();

@@ -37,12 +37,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: EdgeInsets.all(15),
+        padding: EdgeInsets.only(left: 15, right: 15),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: 40),
+              //SizedBox(height: 40),
               ListTile(
                 contentPadding: EdgeInsets.only(left: 0, right: 0),
                 leading: Container(

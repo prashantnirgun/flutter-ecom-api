@@ -1,14 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecom_api/core/constants/app_constant.dart';
 import 'package:flutter_ecom_api/core/routes/app_routes.dart';
-import 'package:flutter_ecom_api/features/authentication/data/models/user_model.dart';
 import 'package:flutter_ecom_api/features/authentication/presentation/bloc/user_bloc.dart';
 import 'package:flutter_ecom_api/features/authentication/presentation/bloc/user_event.dart';
-//import 'package:flutter_ecom_api/features/authentication/presentation/bloc/user_state.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_ecom_api/features/authentication/presentation/bloc/user_state.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -18,7 +14,7 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  UserModel? _user;
+  //UserModel? _user;
   bool _notificationsEnabled = true;
   bool _darkModeEnabled = false;
 
@@ -30,20 +26,20 @@ class _SettingPageState extends State<SettingPage> {
     //   _user = state.user;
     //   print('user ====> $_user');
     // } // cast if needed
-    _loadUser();
+    // _loadUser();
   }
 
+  /*
   Future<void> _loadUser() async {
     final prefs = await SharedPreferences.getInstance();
     String? userString = prefs.getString(AppConstants.USERDATAKEY);
-    if (userString != null) {
-      setState(() {
-        _user = UserModel.fromJson(jsonDecode(userString));
-        print('user is ====> $_user');
-      });
-    }
+    print('user from ===> $userString');
+    setState(() {
+      _user = UserModel.fromJson(jsonDecode(userString!));
+      print('user from ===> $_user');
+    });
   }
-
+*/
   void _showLogoutDialog() {
     showDialog(
       context: context,
@@ -75,6 +71,7 @@ class _SettingPageState extends State<SettingPage> {
     );
   }
 
+  /*
   void _showAboutDialog() {
     showDialog(
       context: context,
@@ -107,37 +104,66 @@ class _SettingPageState extends State<SettingPage> {
       },
     );
   }
-
+*/
   @override
   Widget build(BuildContext context) {
+    //final state = context.watch<UserBloc>().state;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Settings'),
-        actions: [
-          IconButton(
-            onPressed: _showAboutDialog,
-            icon: Icon(Icons.info_outline),
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   title: Text('Settings'),
+      //   actions: [
+      //     IconButton(
+      //       onPressed: _showAboutDialog,
+      //       icon: Icon(Icons.info_outline),
+      //     ),
+      //   ],
+      // ),
       body: ListView(
         padding: EdgeInsets.all(16),
         children: [
           // Profile Section
           Card(
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.orange,
-                child: Icon(Icons.person, color: Colors.white),
-              ),
-              title: Text(
-                _user!.name,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              subtitle: Text(_user!.email),
-              //trailing: Icon(Icons.edit),
-              onTap: () {
-                // Navigate to profile edit page
+            child: BlocBuilder<UserBloc, UserState>(
+              builder: (context, state) {
+                if (state is LoginSuccessState) {
+                  final user = state.user;
+                  return ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.orange,
+                      child: Image.asset(
+                        'assets/icons/man.png',
+                        height: 150,
+                        width: 150,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    title: Text(
+                      user.name,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(user.email),
+                    onTap: () {
+                      // Navigate to profile edit page
+                    },
+                  ); // this is your UserModel
+                }
+                return ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.grey,
+                    child: Image.asset(
+                      'assets/icons/man.png',
+                      height: 100,
+                      width: 100,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  title: Text(
+                    "Guest User",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text("guest@example.com"),
+                );
               },
             ),
           ),
@@ -231,24 +257,37 @@ class _SettingPageState extends State<SettingPage> {
           ),
 
           SizedBox(height: 16),
+          BlocBuilder<UserBloc, UserState>(
+            builder: (context, state) {
+              if (state is LoginSuccessState) {
+                return Column(
+                  children: [
+                    Text(
+                      'ACCOUNT',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        leading: Icon(Icons.logout, color: Colors.red),
+                        title: Text(
+                          'Logout',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        onTap: _showLogoutDialog,
+                      ),
+                    ),
+                  ],
+                );
+              }
+              return Container();
+            },
+          ),
 
           // Account Section
-          Text(
-            'ACCOUNT',
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey,
-            ),
-          ),
-          Card(
-            child: ListTile(
-              leading: Icon(Icons.logout, color: Colors.red),
-              title: Text('Logout', style: TextStyle(color: Colors.red)),
-              onTap: _showLogoutDialog,
-            ),
-          ),
-
           SizedBox(height: 20),
 
           // App Info

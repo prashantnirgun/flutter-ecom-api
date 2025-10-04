@@ -18,32 +18,32 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
-      appBar: AppBar(
-        backgroundColor: Colors.grey.shade200,
-        centerTitle: true,
-        leadingWidth: 55,
-        title: Text(
-          'Products',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 22,
-          ),
-        ),
-        leading: Padding(
-          padding: EdgeInsetsGeometry.only(left: 15),
-          child: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: CircleAvatar(
-              radius: 10,
-              backgroundColor: Colors.white,
-              child: Icon(Icons.arrow_back, color: Colors.black, size: 20),
-            ),
-          ),
-        ),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.grey.shade200,
+      //   centerTitle: true,
+      //   leadingWidth: 55,
+      //   title: Text(
+      //     'Products',
+      //     style: TextStyle(
+      //       color: Colors.black,
+      //       fontWeight: FontWeight.bold,
+      //       fontSize: 22,
+      //     ),
+      //   ),
+      //   leading: Padding(
+      //     padding: EdgeInsetsGeometry.only(left: 15),
+      //     child: GestureDetector(
+      //       onTap: () {
+      //         Navigator.pop(context);
+      //       },
+      //       child: CircleAvatar(
+      //         radius: 10,
+      //         backgroundColor: Colors.white,
+      //         child: Icon(Icons.arrow_back, color: Colors.black, size: 20),
+      //       ),
+      //     ),
+      //   ),
+      // ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 10),
         child: ProductList(categoryId: "0"),

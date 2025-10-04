@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_ecom_api/core/constants/app_urls.dart';
 import 'package:flutter_ecom_api/core/network/api_helper.dart';
 
@@ -12,7 +13,7 @@ class OrderRepository {
     required int userId,
   }) async {
     try {
-      return await apiHelper.postApi(
+      dynamic response = await apiHelper.postApi(
         url: AppUrls.createOrderUrl,
         mBodyParams: {
           "user_id": userId,
@@ -20,17 +21,21 @@ class OrderRepository {
           "status": status,
         },
       );
+      debugPrint('order response ====> $response');
+      return response;
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<dynamic> fetchOrders() async {
+  Future<dynamic> fetchOrders({required int userId}) async {
     try {
-      return await apiHelper.postApi(
+      dynamic response = await apiHelper.postApi(
         url: AppUrls.fetchOrderUrl,
-        mBodyParams: {"user_id": 231},
+        mBodyParams: {"user_id": userId},
       );
+
+      return response;
     } catch (e) {
       rethrow;
     }

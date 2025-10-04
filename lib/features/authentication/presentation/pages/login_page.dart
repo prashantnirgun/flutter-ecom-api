@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecom_api/core/routes/app_routes.dart';
+import 'package:flutter_ecom_api/core/utils/dialogs.dart';
 import 'package:flutter_ecom_api/features/authentication/presentation/bloc/user_bloc.dart';
 import 'package:flutter_ecom_api/features/authentication/presentation/bloc/user_event.dart';
 import 'package:flutter_ecom_api/features/authentication/presentation/bloc/user_state.dart';
 import 'package:flutter_ecom_api/features/authentication/presentation/pages/signup_page.dart';
+//import 'package:quickalert/models/quickalert_type.dart';
+//import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -188,25 +191,32 @@ class _LoginPageState extends State<LoginPage> {
 
                             if (state is UserFailureState) {
                               isLoading = false;
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(state.errorMessage),
-                                  backgroundColor: Colors.red,
-                                ),
+                              AppDialogs.showError(
+                                context,
+                                title: 'Login Failed',
+                                desc:
+                                    'Wrong email or password. Please try again.',
                               );
                             }
 
                             if (state is LoginSuccessState) {
                               isLoading = false;
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Login Success'),
-                                  backgroundColor: Colors.green,
-                                ),
-                              );
-                              Navigator.pushReplacementNamed(
+                              AppDialogs.showSuccess(
                                 context,
-                                AppRoutes.DASHBOARDPAGE,
+                                title: 'Login Succes',
+                                desc: 'Redirecting to Dashboard...',
+                                onOk: () {
+                                  Navigator.pushReplacementNamed(
+                                    context,
+                                    AppRoutes.DASHBOARDPAGE,
+                                  );
+                                },
+                                onDismiss: (type) {
+                                  Navigator.pushReplacementNamed(
+                                    context,
+                                    AppRoutes.DASHBOARDPAGE,
+                                  );
+                                },
                               );
                             }
                           },

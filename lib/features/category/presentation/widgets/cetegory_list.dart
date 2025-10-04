@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecom_api/features/category/presentation/bloc/category_bloc.dart';
 import 'package:flutter_ecom_api/features/category/presentation/bloc/category_event.dart';
 import 'package:flutter_ecom_api/features/category/presentation/bloc/category_state.dart';
+import 'package:flutter_ecom_api/features/home/presentation/dashboard.dart';
 import 'package:flutter_ecom_api/features/product/presentation/widgets/product_list.dart';
 
 class CategoryList extends StatefulWidget {
@@ -121,7 +122,18 @@ class _CategoryListState extends State<CategoryList> {
               "Special for you",
               style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
             ),
-            Text("See All", style: TextStyle(color: Colors.grey, fontSize: 15)),
+            InkWell(
+              onTap: () {
+                // Inside CartPage when you want to go to ProductPage
+                final dashboardState = context
+                    .findAncestorStateOfType<DashboardState>();
+                dashboardState?.navigateToTab(0); // 0 = ProductPage
+              },
+              child: Text(
+                "See All",
+                style: TextStyle(color: Colors.grey, fontSize: 15),
+              ),
+            ),
           ],
         ),
         // SizedBox(height: 20),
