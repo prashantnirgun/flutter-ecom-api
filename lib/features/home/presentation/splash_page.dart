@@ -8,6 +8,7 @@ import 'package:flutter_ecom_api/core/routes/app_routes.dart';
 import 'package:flutter_ecom_api/features/authentication/presentation/bloc/user_bloc.dart';
 import 'package:flutter_ecom_api/features/authentication/presentation/bloc/user_event.dart';
 import 'package:flutter_ecom_api/features/authentication/presentation/pages/login_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -25,8 +26,17 @@ class _SplashPageState extends State<SplashPage> {
       String nextPage = AppRoutes.LOGINPAGE;
       String token = await ApiHelper.getToken();
 
+      final prefs = await SharedPreferences.getInstance();
+      final hasSeenOnboarding = prefs.getBool('hasSeenOnboarding') ?? false;
+
       if (token.isNotEmpty) {
         nextPage = AppRoutes.DASHBOARDPAGE;
+      } else {
+        if (hasSeenOnboarding) {
+          nextPage = AppRoutes.LOGINPAGE;
+        } else {
+          nextPage = AppRoutes.ONBOARDINGPAGE;
+        }
       }
       // ignore: use_build_context_synchronously
       Navigator.pushReplacementNamed(context, nextPage);

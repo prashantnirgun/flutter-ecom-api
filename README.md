@@ -2,7 +2,7 @@
 
 ## packages
 
-flutter pub add flutter_bloc http intl shared_preferences carousel_slider dots_indicator curved_navigation_bar awesome_dialog
+flutter pub add flutter_bloc http intl shared_preferences carousel_slider dots_indicator curved_navigation_bar awesome_dialog introduction_screen
 
 | Task                         | Status |
 | ---------------------------- | ------ |
@@ -29,6 +29,7 @@ flutter pub add flutter_bloc http intl shared_preferences carousel_slider dots_i
 ## UI
 
 1. [x] Splash : Splash page for display company branding.
+1. [x] On Boarding : 3 on boarding pages.
 1. [x] Login : Login user to application.
 1. [x] Sign Up : Create User.
 1. [x] Home Page : Display product listing by category.
@@ -43,16 +44,17 @@ flutter pub add flutter_bloc http intl shared_preferences carousel_slider dots_i
 
 ## Images
 
-|                                                  |                                                 |                                                |
-| ------------------------------------------------ | ----------------------------------------------- | ---------------------------------------------- |
-| Splash                                           | Login                                           | Signup                                         |
-| <img src="./assets/splash.jpg" height="400"/>    | <img src="./assets/login.jpg" height="400"/>    | <img src="./assets/signup.jpg" height="400"/>  |
-| Home                                             | Cart Item                                       | Orders                                         |
-| <img src="./assets/home.jpeg" height="400"/>     | <img src="./assets/cart.jpeg" height="400"/>    | <img src="./assets/orders.jpeg" height="400"/> |
-| All Products                                     | Settings                                        | Privacy Policy                                 |
-| <img src="./assets/products.jpeg" height="400"/> | <img src="./assets/setting.jpeg" height="400"/> | <img src="./assets/policy.jpeg" height="400"/> |
-| Terms & Condition                                | Support                                         |                                                |
-| <img src="./assets/terms.jpeg" height="400"/>    | <img src="./assets/support.jpeg" height="400"/> |                                                |
+|                                                |                                                  |                                                 |
+| ---------------------------------------------- | ------------------------------------------------ | ----------------------------------------------- |
+| Splash                                         | On Board                                         | Login                                           |
+| <img src="./assets/splash.jpg" height="400"/>  | <img src="./assets/on_board.jpeg" height="400"/> | <img src="./assets/login.jpg" height="400"/>    |
+| Signup                                         | Home                                             | Cart Item                                       |
+| <img src="./assets/signup.jpg" height="400"/>  | <img src="./assets/home.jpeg" height="400"/>     | <img src="./assets/cart.jpeg" height="400"/>    |
+| Orders                                         | All Products                                     | Settings                                        |
+| <img src="./assets/orders.jpeg" height="400"/> | <img src="./assets/products.jpeg" height="400"/> | <img src="./assets/setting.jpeg" height="400"/> |
+| Privacy Policy                                 | Terms & Condition                                | Support                                         |
+|                                                |
+| <img src="./assets/policy.jpeg" height="400"/> | <img src="./assets/terms.jpeg" height="400"/>    | <img src="./assets/support.jpeg" height="400"/> |
 
 ## MVV folder structure
 

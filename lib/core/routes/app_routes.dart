@@ -6,6 +6,7 @@ import 'package:flutter_ecom_api/features/cart/presentation/pages/cart_page.dart
 import 'package:flutter_ecom_api/features/home/presentation/dashboard.dart';
 import 'package:flutter_ecom_api/features/home/presentation/help_support_page.dart';
 import 'package:flutter_ecom_api/features/home/presentation/home_page.dart';
+import 'package:flutter_ecom_api/features/home/presentation/on_boarding_page.dart';
 import 'package:flutter_ecom_api/features/home/presentation/private_policy_page.dart';
 import 'package:flutter_ecom_api/features/home/presentation/setting_page.dart';
 import 'package:flutter_ecom_api/features/home/presentation/splash_page.dart';
@@ -26,6 +27,7 @@ class AppRoutes {
   static const HELPPAGE = "/help";
   static const PRIVACYPAGE = "/privacy";
   static const TERMSPAGE = "/terms";
+  static const ONBOARDINGPAGE = "/on-boarding";
 
   static Map<String, Widget Function(BuildContext)> pageRoutes() => {
     SPLASHPAGE: (_) => SplashPage(),
@@ -40,5 +42,6 @@ class AppRoutes {
     HELPPAGE: (_) => HelpSupportPage(),
     PRIVACYPAGE: (_) => PrivacyPolicyPage(),
     TERMSPAGE: (_) => TermsOfServicePage(),
+    ONBOARDINGPAGE: (_) => OnBoardingPage(),
   };
 }

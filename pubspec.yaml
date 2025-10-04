@@ -42,6 +42,7 @@ dependencies:
   dots_indicator: ^4.0.1
   curved_navigation_bar: ^1.0.6
   awesome_dialog: ^3.3.0
+  introduction_screen: ^4.0.0
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +72,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/
+    - assets/images/on_board/
     - assets/icons/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
